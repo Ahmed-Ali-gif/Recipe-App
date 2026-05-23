@@ -1,7 +1,8 @@
 import React from "react";
 
 const ListApi = ({recipes}) => {
-  const {id,image,name,mealType,rating,caloriesPerServing,reviewCount} = recipes
+  const {id,image,name,mealType,rating,caloriesPerServing,reviewCount,tags} = recipes
+  
   return (
     <>
       <li

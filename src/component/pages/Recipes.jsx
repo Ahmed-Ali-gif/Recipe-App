@@ -1,16 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import { useLoaderData, useNavigate } from "react-router-dom";
 import ListApi from "../api/ListApi";
 import Button from "../ui/Button";
+import SearchFilter from "../ui/SearchFilter";
 
 const Recipes = () => {
+  const [search, setSearch] = useState("")
   const data = useLoaderData();
   const navigateBack = useNavigate();
   const handleClick = () => {
     navigateBack(-1);
   };
+   const handleChange =(e)=>{
+    console.log(e.target.value);
+    setSearch(e.target.value)
+  }
   return (
     <div>
+     <div className="flex justify-center items-center my-3">
+       <SearchFilter value={search} onChange={(e)=>handleChange(e)} className="px-2 py-1 bg-gray-600 rounded w-80 text-white "/>
+     </div>
       <ul className="grid grid-cols-[repeat(auto-fit,minmax(250px,1fr))] mx-6 my-2 gap-6 ">
         {data.recipes.map((recipes) => {
           return <ListApi key={recipes.id} recipes={recipes} />;
